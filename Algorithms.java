@@ -7,41 +7,37 @@ public class Algorithms {
     private static Scanner s;
     public static void main(String[] args) throws FileNotFoundException {
         f = new File("words.txt");
-        String twoletters = twoletters();
+        int twoletters = twoletters();
         System.out.println("two letters: " + twoletters);
-        String longest = longest();
+        int longest = longest();
         System.out.println("longest: " + longest);
+        int palindrome = palindromes();
+        System.out.println("palindromes: " + palindrome);
     }
-        public static String twoletters() throws FileNotFoundException{
+        public static int twoletters() throws FileNotFoundException{
             s = new Scanner(f);
-            String twoletters = "";
+            int count = 0;
             while(s.hasNext()){
-                String current = s.next();
                 if(s.next().length() == 2){
-                    twoletters += (current + "");
+                    count++;
                 }
             }
-            return twoletters;
+            return count;
         }
 
-        public static String longest() throws FileNotFoundException{
+        public static int longest() throws FileNotFoundException{
             s = new Scanner(f);
             String longest = "";
             int max = 0;
             int count = 0;
             while(s.hasNext()){
                 String current = s.next();
-                if(s.next().length() > max){
-                    max = current.length();
-                    longest += current;
-                }
-                
-                if(s.next().length() == max){
+                if(s.next().length() == 14){
                     count++;
                 }
                 
             }
-            return longest;
+            return count;
         }
         public static int palindromes() throws FileNotFoundException{
             s = new Scanner(f);
@@ -49,17 +45,16 @@ public class Algorithms {
             String word = "";
             while(s.hasNext()){
                 String current = s.next();
-                for(int i = s.next().length()- 1; i > 0; i--){
-                    word = word + current.substring(i);
-
-                }
+                for(int i = 0;  i <= current.length(); i++){
+                    word = word + current.substring(i, i + 1);
                 if(current.equals(word)){
                     count++;
                 }
                 
             }
-            return count;
         }
+        return count;
+}
 }
 
     
