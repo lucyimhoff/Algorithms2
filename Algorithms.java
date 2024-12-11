@@ -9,6 +9,8 @@ public class Algorithms {
         f = new File("words.txt");
         int twoletters = twoletters();
         System.out.println("two letters: " + twoletters);
+        int max = max();
+        System.out.println(max);
         int longest = longest();
         System.out.println("longest: " + longest);
         int palindrome = palindromes();
@@ -24,15 +26,25 @@ public class Algorithms {
             }
             return count;
         }
-
-        public static int longest() throws FileNotFoundException{
+        public static int max() throws FileNotFoundException{
             s = new Scanner(f);
             String longest = "";
             int max = 0;
             int count = 0;
             while(s.hasNext()){
-                String current = s.next();
-                if(s.next().length() == 14){
+                if(s.next().length() > max){
+                    max++;
+                }
+                
+            }
+            return max;
+        }
+
+        public static int longest() throws FileNotFoundException{
+            s = new Scanner(f);
+            int count = 0;
+            while(s.hasNext()){
+                if(s.nextLine().length() == 14){
                     count++;
                 }
                 
@@ -42,17 +54,17 @@ public class Algorithms {
         public static int palindromes() throws FileNotFoundException{
             s = new Scanner(f);
             int count = 0;
-            String word = "";
             while(s.hasNext()){
-                String current = s.next();
-                for(int i = 0;  i <= current.length(); i++){
-                    word = word + current.substring(i, i + 1);
+                String word = "";
+                String current = s.nextLine();
+                for(int i = current.length();  i >= 1; i--){
+                    word = word + current.substring(i - 1, i);
+                }
                 if(current.equals(word)){
                     count++;
                 }
                 
             }
-        }
         return count;
 }
 }
