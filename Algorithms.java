@@ -9,22 +9,22 @@ public class Algorithms {
         f = new File("words.txt");
         String twoletters = twoletters();
         System.out.println("two letters: " + twoletters);
-        int longest = longest();
+        String longest = longest();
         System.out.println("longest: " + longest);
     }
         public static String twoletters() throws FileNotFoundException{
             s = new Scanner(f);
             String twoletters = "";
             while(s.hasNext()){
+                String current = s.next();
                 if(s.next().length() == 2){
-                    String current = s.nextLine();
                     twoletters += (current + "");
                 }
             }
             return twoletters;
         }
 
-        public static int longest() throws FileNotFoundException{
+        public static String longest() throws FileNotFoundException{
             s = new Scanner(f);
             String longest = "";
             int max = 0;
@@ -41,16 +41,20 @@ public class Algorithms {
                 }
                 
             }
-            return count;
+            return longest;
         }
         public static int palindromes() throws FileNotFoundException{
             s = new Scanner(f);
             int count = 0;
             String word = "";
             while(s.hasNext()){
+                String current = s.next();
                 for(int i = s.next().length()- 1; i > 0; i--){
-                    //word = word + 
+                    word = word + current.substring(i);
 
+                }
+                if(current.equals(word)){
+                    count++;
                 }
                 
             }
